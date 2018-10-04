@@ -23,6 +23,10 @@ resource "aws_vpc" "this" {
   assign_generated_ipv6_cidr_block = "${var.assign_generated_ipv6_cidr_block}"
 
   tags = "${merge(map("Name", format("%s", var.name)), var.tags, var.vpc_tags)}"
+
+  lifecycle {
+    ignore_changes = "${var.vpc_ignore_changes}"
+  }
 }
 
 resource "aws_vpc_ipv4_cidr_block_association" "this" {
