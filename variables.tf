@@ -355,9 +355,3 @@ variable "default_vpc_tags" {
   description = "Additional tags for the Default VPC"
   default     = {}
 }
-
-variable "vpc_ignore_changes" {
-  type        = "list"
-  description = "lifecyle ignore_changes value for vpc"
-  default     = []
-}

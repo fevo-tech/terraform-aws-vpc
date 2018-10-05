@@ -25,7 +25,7 @@ resource "aws_vpc" "this" {
   tags = "${merge(map("Name", format("%s", var.name)), var.tags, var.vpc_tags)}"
 
   lifecycle {
-    ignore_changes = "${var.vpc_ignore_changes}"
+    ignore_changes = ["tags"]
   }
 }
 
@@ -170,6 +170,10 @@ resource "aws_subnet" "public" {
   map_public_ip_on_launch = "${var.map_public_ip_on_launch}"
 
   tags = "${merge(map("Name", format("%s-${var.public_subnet_suffix}-%s", var.name, element(var.azs, count.index))), var.tags, var.public_subnet_tags)}"
+
+  lifecycle {
+    ignore_changes = ["tags"]
+  }
 }
 
 #################
