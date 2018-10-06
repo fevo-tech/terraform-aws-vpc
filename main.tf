@@ -187,6 +187,10 @@ resource "aws_subnet" "private" {
   availability_zone = "${element(var.azs, count.index)}"
 
   tags = "${merge(map("Name", format("%s-${var.private_subnet_suffix}-%s", var.name, element(var.azs, count.index))), var.tags, var.private_subnet_tags)}"
+
+  lifecycle {
+    ignore_changes = ["tags"]
+  }
 }
 
 ##################
